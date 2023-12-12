@@ -55,4 +55,20 @@ void main() {
       }
     }), findsNWidgets(5));
   });
+
+  testWidgets('When tap Deposit should upload earned in 10',
+      (widgetTester) async {
+    await widgetTester.pumpWidget(
+      MaterialApp(
+        home: BankInherited(
+          child: const Home(),
+        ),
+      ),
+    );
+    await widgetTester.tap(find.text('Deposit'));
+    await widgetTester.tap(find.text('Earned'));
+    await widgetTester.pumpAndSettle();
+
+    expect(find.text('\$10.0'), findsOneWidget);
+  });
 }
